@@ -91,42 +91,76 @@ eleventyExcludeFromCollections: true
   </main>
   <script>
     var Q = {{ question | dump | safe }};
-    var selected = null;
+    var multiCorrect = Q.choices.filter(function (c) { return c.correct; }).length > 1;
+    var selected = multiCorrect ? [] : null;
 
     document.getElementById('stem').textContent = Q.stem;
+
+    if (multiCorrect) {
+      var hint = document.createElement('p');
+      hint.style.cssText = 'font-size:0.85rem;color:#888;margin-bottom:0.75rem;';
+      hint.textContent = 'Vyber všechny správné odpovědi.';
+      document.getElementById('choices').before(hint);
+    }
 
     var choicesEl = document.getElementById('choices');
     Q.choices.forEach(function (c, i) {
       var btn = document.createElement('button');
       btn.className = 'choice';
       btn.textContent = c.text;
+      btn.setAttribute('data-index', i);
       btn.addEventListener('click', function () {
-        document.querySelectorAll('.choice').forEach(function (b) {
-          b.classList.remove('selected');
-        });
-        btn.classList.add('selected');
-        selected = i;
-        document.getElementById('submit').disabled = false;
+        if (multiCorrect) {
+          var idx = selected.indexOf(i);
+          if (idx === -1) {
+            selected.push(i);
+            btn.classList.add('selected');
+          } else {
+            selected.splice(idx, 1);
+            btn.classList.remove('selected');
+          }
+          document.getElementById('submit').disabled = selected.length === 0;
+        } else {
+          document.querySelectorAll('.choice').forEach(function (b) {
+            b.classList.remove('selected');
+          });
+          btn.classList.add('selected');
+          selected = i;
+          document.getElementById('submit').disabled = false;
+        }
       });
       choicesEl.appendChild(btn);
     });
 
     document.getElementById('submit').addEventListener('click', function () {
-      if (selected === null) return;
-      var correct = Q.choices[selected].correct;
       var fb = document.getElementById('feedback');
       document.getElementById('submit').disabled = true;
       document.querySelectorAll('.choice').forEach(function (b) {
         b.disabled = true;
       });
       fb.hidden = false;
-      if (correct) {
-        fb.className = 'feedback correct';
-        fb.textContent = 'Correct!';
+
+      var isCorrect;
+      if (multiCorrect) {
+        var correctIndices = Q.choices.reduce(function (acc, c, i) {
+          if (c.correct) acc.push(i);
+          return acc;
+        }, []);
+        isCorrect = selected.length === correctIndices.length &&
+          correctIndices.every(function (i) { return selected.indexOf(i) !== -1; });
       } else {
-        var rightText = Q.choices.find(function (c) { return c.correct; }).text;
+        isCorrect = selected !== null && Q.choices[selected].correct;
+      }
+
+      if (isCorrect) {
+        fb.className = 'feedback correct';
+        fb.textContent = 'Správně!';
+      } else {
+        var rightTexts = Q.choices.filter(function (c) { return c.correct; }).map(function (c) { return c.text; });
         fb.className = 'feedback wrong';
-        fb.innerHTML = 'Not quite. <span class="detail">The correct answer is: ' + rightText + '</span>';
+        fb.innerHTML = 'Bohužel ne. <span class="detail">Správná odpověď' +
+          (rightTexts.length > 1 ? 'i jsou: ' : ' je: ') +
+          rightTexts.join(', ') + '</span>';
       }
     });
   </script>
