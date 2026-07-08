@@ -9,9 +9,10 @@ The code lives in the GitHub repo **[marvatom/wedding-quiz](https://github.com/m
 ## Repository & deployment
 
 - **Canonical repo:** `marvatom/wedding-quiz` on GitHub. This is where code, tooling, and content live.
-- **Claude owns the full lifecycle via the GitHub MCP server.** Scaffolding code, committing, opening/merging PRs, configuring the Pages source, and triggering/verifying the deploy all happen through GitHub MCP tools — not by asking the user to run git or click through the GitHub UI. The local working directory may be used for drafting, but GitHub is the source of truth.
+- **Local working directory is the primary workspace.** The repo is cloned locally at the working directory. Use standard git commands (`git add`, `git commit`, `git push`, `git pull`) for all code changes and history. Do not use the GitHub MCP to commit or push files — use git directly.
+- **GitHub MCP is for GitHub-level actions only:** triggering workflow runs (`workflow_dispatch`), inspecting Actions runs, managing PRs, reviewing issues, or configuring repo settings that have no git equivalent. Do not use MCP `push_files` or `create_or_update_file` when a normal git commit will do.
 - **Publishing target: GitHub Pages** for this repo, served at **`https://marvatom.github.io/wedding-quiz/`** (a project page, so everything lives under the `/wedding-quiz/` subpath — see the base-path note below).
-- Prefer a **GitHub Actions Pages workflow** (build step → `actions/deploy-pages`) over the legacy "deploy from branch" setting, since the design expects a build step that transforms YAML→JSON and emits QR URLs. Configure the Pages source to "GitHub Actions" through the MCP.
+- Deploys automatically on every push to `main` via the GitHub Actions Pages workflow. Pages source is already set to "GitHub Actions" in repo settings.
 
 ## What this is
 
@@ -54,7 +55,7 @@ Because there's no backend, expect roughly three concerns:
 Question hashes are **derived at build time** — SHA-256 of the question stem, first 8 hex characters. Nothing is stored in the YAML. If you change a question stem, its URL changes and any printed QR codes for that question must be regenerated.
 
 ### Deploy workflow
-File: `.github/workflows/deploy.yml`. Triggers on push to `main` and manually via `workflow_dispatch`. Build step runs `npm ci && npm run build` (output: `dist/`), deploy step uploads to GitHub Pages via `actions/deploy-pages@v4`. Pages source must be set to "GitHub Actions" in the repo settings.
+File: `.github/workflows/deploy.yml`. Triggers on push to `main` and manually via `workflow_dispatch`. Build step runs `npm install && npm run build` (output: `dist/`), deploy step uploads to GitHub Pages via `actions/deploy-pages@v4`. Pages source is already configured as "GitHub Actions" in repo settings. To manually retrigger a run, use the GitHub MCP (no `workflow_dispatch` tool exists yet — push a trivial commit or ask the user to trigger from the Actions tab).
 
 ### Content editing
 Edit `src/_data/questions.yaml`. After any change: commit and push to `main` — the workflow auto-deploys. Run `npm run qr-urls` if question stems changed, then reprint any affected QR codes.
