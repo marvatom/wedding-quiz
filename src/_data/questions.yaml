@@ -7,29 +7,29 @@
 #     correct: true | false  (at least one must be true)
 
 questions:
-  - stem: "How did the couple first meet?"
+  - stem: "Jak se pár poprvé potkal?"
     choices:
-      - text: "At a coffee shop"
+      - text: "V kavárně"
         correct: true
-      - text: "At a party"
+      - text: "Na párty"
         correct: false
-      - text: "Through mutual friends"
+      - text: "Přes společné přátele"
         correct: false
-      - text: "Online dating"
+      - text: "Přes online seznamku"
         correct: false
 
-  - stem: "In which city did the couple go on their first date?"
+  - stem: "Ve kterém městě měl pár první rande?"
     choices:
-      - text: "Prague"
+      - text: "Praha"
         correct: true
-      - text: "Vienna"
+      - text: "Vídeň"
         correct: false
       - text: "Brno"
         correct: false
-      - text: "Budapest"
+      - text: "Budapešť"
         correct: false
 
-  - stem: "What year did the couple get engaged?"
+  - stem: "V jakém roce se pár zasnoubil?"
     choices:
       - text: "2022"
         correct: false
@@ -39,3 +39,14 @@ questions:
         correct: false
       - text: "2025"
         correct: false
+
+  - stem: "Co umí ženich i nevěsta?"
+    choices:
+      - text: "Řídit auto"
+        correct: true
+      - text: "Zpívat"
+        correct: true
+      - text: "Háčkovat"
+        correct: false
+      - text: "Bavit se až do rána"
+        correct: true
