@@ -1,0 +1,41 @@
+# Wedding quiz questions
+# Edit this file to add, remove, or change questions.
+# Each question needs:
+#   stem: the question text (also determines the URL hash — changing it invalidates printed QR codes)
+#   choices: list of answer options, each with:
+#     text: the answer text shown to the guest
+#     correct: true | false  (at least one must be true)
+
+questions:
+  - stem: "How did the couple first meet?"
+    choices:
+      - text: "At a coffee shop"
+        correct: true
+      - text: "At a party"
+        correct: false
+      - text: "Through mutual friends"
+        correct: false
+      - text: "Online dating"
+        correct: false
+
+  - stem: "In which city did the couple go on their first date?"
+    choices:
+      - text: "Prague"
+        correct: true
+      - text: "Vienna"
+        correct: false
+      - text: "Brno"
+        correct: false
+      - text: "Budapest"
+        correct: false
+
+  - stem: "What year did the couple get engaged?"
+    choices:
+      - text: "2022"
+        correct: false
+      - text: "2023"
+        correct: true
+      - text: "2024"
+        correct: false
+      - text: "2025"
+        correct: false

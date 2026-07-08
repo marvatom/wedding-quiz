@@ -1,0 +1,15 @@
+{
+  "name": "wedding-quiz",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static wedding quiz app — guests scan a QR code to answer one question",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve",
+    "qr-urls": "node scripts/qr-urls.js"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "js-yaml": "^4.1.0"
+  }
+}
