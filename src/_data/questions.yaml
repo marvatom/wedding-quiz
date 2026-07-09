@@ -1,13 +1,16 @@
 # Wedding quiz questions
 # Edit this file to add, remove, or change questions.
 # Each question needs:
-#   stem: the question text (also determines the URL hash — changing it invalidates printed QR codes)
+#   id: a stable integer — this determines the URL hash. Never change it once QR codes are printed.
+#       To add a new question, pick the next unused integer (do not reuse ids).
+#   stem: the question text (safe to change — does not affect the URL)
 #   choices: list of answer options, each with:
 #     text: the answer text shown to the guest
 #     correct: true | false  (at least one must be true)
 
 questions:
-  - stem: "Jak se pár poprvé potkal?"
+  - id: 1
+    stem: "Jak se pár poprvé potkal?"
     choices:
       - text: "V kavárně"
         correct: true
@@ -18,7 +21,8 @@ questions:
       - text: "Přes online seznamku"
         correct: false
 
-  - stem: "Ve kterém městě měl pár první rande?"
+  - id: 2
+    stem: "Ve kterém městě měl pár první rande?"
     choices:
       - text: "Praha"
         correct: true
@@ -29,7 +33,8 @@ questions:
       - text: "Budapešť"
         correct: false
 
-  - stem: "V jakém roce se pár zasnoubil?"
+  - id: 3
+    stem: "V jakém roce se pár zasnoubil?"
     choices:
       - text: "2022"
         correct: false
@@ -40,7 +45,8 @@ questions:
       - text: "2025"
         correct: false
 
-  - stem: "Co umí ženich i nevěsta?"
+  - id: 4
+    stem: "Co umí ženich i nevěsta?"
     choices:
       - text: "Řídit auto"
         correct: true

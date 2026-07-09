@@ -6,9 +6,11 @@ module.exports = function (eleventyConfig) {
     return yaml.load(contents);
   });
 
-  // Derive a stable 8-char hash from the question stem — used as the URL slug
-  eleventyConfig.addFilter('questionHash', (stem) =>
-    crypto.createHash('sha256').update(stem).digest('hex').slice(0, 8)
+  // Derive a stable 8-char hash from the question id with a fixed salt — used as the URL slug.
+  // The salt prevents guests from enumerating all questions by guessing sequential ids.
+  const HASH_SALT = 'wedding-quiz-t&m-2026';
+  eleventyConfig.addFilter('questionHash', (id) =>
+    crypto.createHash('sha256').update(HASH_SALT + String(id)).digest('hex').slice(0, 8)
   );
 
   return {

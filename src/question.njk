@@ -3,7 +3,7 @@ pagination:
   data: questions.questions
   size: 1
   alias: question
-permalink: "q/{{ question.stem | questionHash }}/"
+permalink: "q/{{ question.id | questionHash }}/"
 eleventyExcludeFromCollections: true
 ---
 <!DOCTYPE html>

@@ -52,13 +52,16 @@ Because there's no backend, expect roughly three concerns:
 **Eleventy (11ty) v3** with Nunjucks templates. Chosen because: native YAML `_data/` support, pagination API generates one HTML page per question at build time, zero runtime dependencies, good GitHub Pages + Actions support.
 
 ### Hash scheme
-Question hashes are **derived at build time** — SHA-256 of the question stem, first 8 hex characters. Nothing is stored in the YAML. If you change a question stem, its URL changes and any printed QR codes for that question must be regenerated.
+Question hashes are **derived at build time** — SHA-256 of `HASH_SALT + question.id`, first 8 hex characters. Each question carries a stable integer `id` in the YAML; the URL is determined by that `id`, not the question text. The fixed salt (defined in `.eleventy.js` and `scripts/qr-urls.js`) prevents guests from enumerating questions by guessing sequential ids. Rules for content editors:
+- **Never change an `id`** once QR codes for that question are printed.
+- Changing the `stem` or `choices` is safe — it does not affect the URL.
+- To add a new question, pick the next unused integer as its `id` (do not reuse old ids).
 
 ### Deploy workflow
 File: `.github/workflows/deploy.yml`. Triggers on push to `main` and manually via `workflow_dispatch`. Build step runs `npm install && npm run build` (output: `dist/`), deploy step uploads to GitHub Pages via `actions/deploy-pages@v4`. Pages source is already configured as "GitHub Actions" in repo settings. To manually retrigger a run, use the GitHub MCP (no `workflow_dispatch` tool exists yet — push a trivial commit or ask the user to trigger from the Actions tab).
 
 ### Content editing
-Edit `src/_data/questions.yaml`. After any change: commit and push to `main` — the workflow auto-deploys. Run `npm run qr-urls` if question stems changed, then reprint any affected QR codes.
+Edit `src/_data/questions.yaml`. After any change: commit and push to `main` — the workflow auto-deploys. Run `npm run qr-urls` only if you added new questions (new ids) — existing question URLs are unaffected by stem/choice edits.
 
 ### Note on correct-answer visibility
 The correct answer is baked into each question's HTML (needed for client-side validation with no backend). Guests who inspect page source can find it. The opaque URL hash prevents walking all questions, but a motivated guest could still find the answer by reading source. This is an accepted tradeoff for a fully static app.
