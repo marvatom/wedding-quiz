@@ -13,19 +13,25 @@ const data = yaml.load(
   fs.readFileSync(path.join(__dirname, '../src/_data/questions.yaml'), 'utf8')
 );
 
-function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, (c) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-  }[c]));
+const CARDS_PER_PAGE = 2;
+
+function renderCell(c) {
+  return `
+    <div class="cell">
+      <img src="${c.dataUrl}" alt="QR code for question ${c.id}" />
+      <div class="label">${c.id}</div>
+    </div>`;
 }
 
 function renderHtml(cards) {
-  const cardsHtml = cards.map((c) => `
-    <div class="card">
-      <img src="${c.dataUrl}" alt="QR code for question ${c.id}" width="220" height="220" />
-      <div class="label">Q${c.id}</div>
-      <div class="stem">${escapeHtml(c.stem)}</div>
-      <div class="url">${c.url}</div>
+  const pages = [];
+  for (let i = 0; i < cards.length; i += CARDS_PER_PAGE) {
+    pages.push(cards.slice(i, i + CARDS_PER_PAGE));
+  }
+
+  const pagesHtml = pages.map((pageCards) => `
+    <div class="page">
+      ${pageCards.map(renderCell).join('\n')}
     </div>`).join('\n');
 
   return `<!doctype html>
@@ -35,35 +41,31 @@ function renderHtml(cards) {
 <title>Wedding Quiz — QR Codes</title>
 <style>
   * { box-sizing: border-box; }
-  body { font-family: system-ui, sans-serif; margin: 0; padding: 24px; }
-  h1 { text-align: center; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+  @page { size: A4; margin: 0; }
+  body { font-family: system-ui, sans-serif; margin: 0; }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
   }
-  .card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    page-break-inside: avoid;
+  .page:last-child { page-break-after: auto; }
+  .cell {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px dashed #999;
   }
-  .card img { width: 100%; height: auto; max-width: 220px; }
-  .label { margin-top: 8px; font-size: 20px; font-weight: bold; }
-  .stem { margin-top: 4px; font-size: 13px; color: #444; }
-  .url { margin-top: 6px; font-size: 10px; color: #999; word-break: break-all; }
-  @media print {
-    body { padding: 0; }
-    .url { display: none; }
-  }
+  .cell:last-child { border-bottom: none; }
+  .cell img { width: 60mm; height: 60mm; }
+  .label { margin-top: 16px; font-size: 72px; font-weight: bold; }
 </style>
 </head>
 <body>
-  <h1>Wedding Quiz — QR Codes</h1>
-  <div class="grid">
-    ${cardsHtml}
-  </div>
+  ${pagesHtml}
 </body>
 </html>
 `;
@@ -74,14 +76,14 @@ async function main() {
     data.questions.map(async (q) => {
       const hash = crypto.createHash('sha256').update(HASH_SALT + String(q.id)).digest('hex').slice(0, 8);
       const url = BASE_URL + hash + '/';
-      const dataUrl = await QRCode.toDataURL(url, { width: 300, margin: 1 });
-      return { id: q.id, stem: q.stem, url, dataUrl };
+      const dataUrl = await QRCode.toDataURL(url, { width: 600, margin: 1 });
+      return { id: q.id, dataUrl };
     })
   );
 
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   fs.writeFileSync(OUTPUT_FILE, renderHtml(cards));
-  console.log(`Wrote ${cards.length} QR codes to ${OUTPUT_FILE}`);
+  console.log(`Wrote ${cards.length} QR code pages to ${OUTPUT_FILE}`);
 }
 
 main().catch((err) => {
