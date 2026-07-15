@@ -47,6 +47,23 @@ questions:
 
 ---
 
+## Configuring the intro page
+
+The root page (shown to guests who open the site without scanning a question QR code) is data-driven from **`src/_data/intro.yaml`**:
+
+```yaml
+title: "Svatební kvíz"
+paragraphs:
+  - "First paragraph…"
+  - "Second paragraph…"
+image: "trail-map.jpg"     # filename in src/assets/intro/, or "" for no image
+imageAlt: "Mapa trasy s umístěním QR kódů"
+```
+
+To add a trail map or other image, drop the file in **`src/assets/intro/`** and set `image` (and `imageAlt`) accordingly. Leave `image` blank to omit it. This is the only page allowed to carry an image — question pages stay text-only for reliable mobile rendering.
+
+---
+
 ## Getting QR codes
 
 ### Printable sheet (recommended)
@@ -109,9 +126,13 @@ https://github.com/marvatom/wedding-quiz/actions
 
 ```bash
 npm install       # install dependencies
-npm run dev       # build and serve locally with live reload (http://localhost:8080)
+npm run dev       # build and serve locally with live reload
 npm run build     # one-off build to dist/
 ```
+
+`npm run dev` prints the URL to open, e.g. `http://localhost:8080/wedding-quiz/`. Note the trailing **`/wedding-quiz/`** — the dev server mirrors the GitHub Pages subpath, so opening bare `localhost:8080/` (without it) won't resolve links/assets correctly. If port 8080 is already in use, Eleventy picks the next free port and prints that instead — always use the URL from the terminal output, not an assumed one.
+
+The server watches `src/` and rebuilds on save, including changes to `questions.yaml` and `intro.yaml`.
 
 ---
 

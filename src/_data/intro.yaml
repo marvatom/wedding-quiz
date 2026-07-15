@@ -1,0 +1,15 @@
+# Intro/landing page content — shown to guests who open the site without scanning
+# a question QR code first. Edit freely; changes take effect on the next build/deploy.
+#
+#   title: page heading
+#   paragraphs: list of paragraphs, rendered in order (plain text, no HTML needed)
+#   image: filename of an image placed in src/assets/intro/ (e.g. a trail map), or omit/blank for none
+#   imageAlt: accessible alt text for the image — required if image is set
+
+title: "Svatební kvíz"
+paragraphs:
+  - "Vítejte na svatebním kvízu Zůzy a Toma!"
+  - "Podél trasy najdete rozmístěné QR kódy — každý ukrývá jednu otázku o novomanželích. Naskenujte kód telefonem, vyberte odpověď a hned se dozvíte, jestli jste uhodli."
+  - "Mapu trasy najdete níže."
+image: "map.png"
+imageAlt: "Mapa trasy svatebního kvízu"

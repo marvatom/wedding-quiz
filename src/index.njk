@@ -3,11 +3,11 @@ layout: false
 permalink: index.html
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Quiz</title>
+  <title>{{ intro.title }}</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -16,19 +16,44 @@ permalink: index.html
       color: #222;
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
       padding: 1.5rem;
+    }
+    main { max-width: 480px; width: 100%; }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
       text-align: center;
     }
-    h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
-    p { color: #666; line-height: 1.6; }
+    p { color: #444; line-height: 1.6; margin-bottom: 0.9rem; }
+    p:last-of-type { margin-bottom: 0; }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-top: 1.25rem;
+    }
   </style>
 </head>
 <body>
   <main>
-    <h1>Wedding Quiz</h1>
-    <p>Scan a QR code at your table to play.</p>
+    <div class="card">
+      <h1>{{ intro.title }}</h1>
+      {% for paragraph in intro.paragraphs %}
+      <p>{{ paragraph }}</p>
+      {% endfor %}
+      {% if intro.image %}
+      <img src="{{ ('/assets/intro/' + intro.image) | url }}" alt="{{ intro.imageAlt }}">
+      {% endif %}
+    </div>
   </main>
 </body>
 </html>

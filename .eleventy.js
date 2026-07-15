@@ -6,6 +6,8 @@ module.exports = function (eleventyConfig) {
     return yaml.load(contents);
   });
 
+  eleventyConfig.addPassthroughCopy('src/assets');
+
   // Derive a stable 8-char hash from the question id with a fixed salt — used as the URL slug.
   // The salt prevents guests from enumerating all questions by guessing sequential ids.
   const HASH_SALT = 'wedding-quiz-t&m-2026';

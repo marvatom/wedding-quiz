@@ -24,7 +24,7 @@ A single-purpose static web app: a **wedding quiz**. Guests scan a QR code (prin
 - **Questions and answers live in a static YAML file.** This is the single source of truth for quiz content. Each question has a stem, multiple answer choices, and a marker for which choice(s) are correct — **at least one** correct answer per question, possibly more than one.
 - **URLs address questions by an opaque hash, not by index.** A QR code encodes a URL whose hash maps to a specific question. Guests must not be able to guess `?q=1`, `?q=2`, … and walk the whole quiz, and the mapping should not reveal the question order. The hash → question resolution happens client-side (the YAML, or a generated index derived from it, is loaded in the browser).
 - **Config is read only at generation time, never live.** The YAML content is consumed once by the build step, which bakes it into the generated site. The deployed site does not re-read or fetch the YAML at runtime. Any change to the quiz content means **regenerating and redeploying** the web — there is no live/hot config.
-- **Simple, image-free design that renders reliably on mobile.** Guests view this on phones, so the UI must be a clean, text-only, responsive layout — **no images, photos, or icon assets**. Prioritize legibility, large touch targets, and reliable rendering across mobile browsers over any visual flourish.
+- **Simple, image-free question pages that render reliably on mobile.** Guests view these on phones while walking a trail, so question pages must stay a clean, text-only, responsive layout — **no images, photos, or icon assets**. Prioritize legibility, large touch targets, and reliable rendering across mobile browsers over any visual flourish. The intro/landing page (`src/index.njk`) is the one exception: it may include a single responsive image (e.g. a trail map) since it's viewed once, not scanned repeatedly like question pages.
 
 ## Architecture to build
 
@@ -62,6 +62,9 @@ File: `.github/workflows/deploy.yml`. Triggers on push to `main` and manually vi
 
 ### Content editing
 Edit `src/_data/questions.yaml`. After any change: commit and push to `main` — the workflow auto-deploys. Run `npm run qr-urls` only if you added new questions (new ids) — existing question URLs are unaffected by stem/choice edits.
+
+### Intro/landing page
+`src/index.njk` renders the root page (shown to guests who land without a QR code). Content — title, paragraphs, optional image — is data-driven from `src/_data/intro.yaml`, following the same "config baked at build time" pattern as questions. To add the trail-map image: drop the file in `src/assets/intro/` (copied verbatim to `dist/assets/intro/` via `addPassthroughCopy` in `.eleventy.js`) and set `image`/`imageAlt` in `intro.yaml`. Leave `image` blank to omit it.
 
 ### Note on correct-answer visibility
 The correct answer is baked into each question's HTML (needed for client-side validation with no backend). Guests who inspect page source can find it. The opaque URL hash prevents walking all questions, but a motivated guest could still find the answer by reading source. This is an accepted tradeoff for a fully static app.
