@@ -10,49 +10,181 @@
 
 questions:
   - id: 1
-    stem: "Jak se pár poprvé potkal?"
+    stem: "Čím chtěli být ženich a nevěsta, když byli malí?"
     choices:
-      - text: "V kavárně"
+      - text: "Hasič a princezna"
         correct: true
-      - text: "Na párty"
+      - text: "Kosmonaut a veterinářka"
         correct: false
-      - text: "Přes společné přátele"
+      - text: "Fotbalista a učitelka"
         correct: false
-      - text: "Přes online seznamku"
+      - text: "Popová hvězda a lékařka"
         correct: false
 
   - id: 2
-    stem: "Ve kterém městě měl pár první rande?"
+    stem: "Jaký je společný zájem novomanželů?"
     choices:
-      - text: "Praha"
+      - text: "Cestování"
         correct: true
-      - text: "Vídeň"
+      - text: "Vaření"
         correct: false
-      - text: "Brno"
+      - text: "Turistika"
         correct: false
-      - text: "Budapešť"
+      - text: "Deskové hry"
         correct: false
 
   - id: 3
-    stem: "V jakém roce se pár zasnoubil?"
+    stem: "Kde se novomanželé poprvé setkali?"
     choices:
-      - text: "2022"
-        correct: false
-      - text: "2023"
+      - text: "V kavárně"
         correct: true
-      - text: "2024"
+      - text: "Na univerzitě"
         correct: false
-      - text: "2025"
+      - text: "Přes společné přátele"
+        correct: false
+      - text: "Na dovolené"
         correct: false
 
   - id: 4
-    stem: "Co umí ženich i nevěsta?"
+    stem: "Kam vedla úplně první společná dovolená novomanželů?"
     choices:
-      - text: "Řídit auto"
+      - text: "Itálie"
         correct: true
-      - text: "Zpívat"
-        correct: true
-      - text: "Háčkovat"
+      - text: "Chorvatsko"
         correct: false
-      - text: "Bavit se až do rána"
+      - text: "Řecko"
+        correct: false
+      - text: "Španělsko"
+        correct: false
+
+  - id: 5
+    stem: "Který filmový žánr si novomanželé nejraději pustí před spaním?"
+    choices:
+      - text: "Komedie"
         correct: true
+      - text: "Thriller"
+        correct: false
+      - text: "Romantický film"
+        correct: false
+      - text: "Dokument"
+        correct: false
+
+  - id: 6
+    stem: "Kdo plakal víc při zásnubách?"
+    choices:
+      - text: "Ženich"
+        correct: true
+      - text: "Nevěsta"
+        correct: false
+      - text: "Oba stejně"
+        correct: false
+      - text: "Nikdo"
+        correct: false
+
+  - id: 7
+    stem: "Jaké zvíře si novomanželé domů jistě pořídí?"
+    choices:
+      - text: "Psa"
+        correct: true
+      - text: "Kočku"
+        correct: false
+      - text: "Papouška"
+        correct: false
+      - text: "Žádné"
+        correct: false
+
+  - id: 8
+    stem: "Jak dlouho se novomanželé znají?"
+    choices:
+      - text: "1 rok"
+        correct: false
+      - text: "3 roky"
+        correct: true
+      - text: "5 let"
+        correct: false
+      - text: "8 let"
+        correct: false
+
+  - id: 9
+    stem: "Jaké vozidlo řídila nevěsta, ale ženich nikdy?"
+    choices:
+      - text: "Motorku"
+        correct: true
+      - text: "Traktor"
+        correct: false
+      - text: "Autobus"
+        correct: false
+      - text: "Kamion"
+        correct: false
+
+  - id: 10
+    stem: "Za kterou památkou by novomanželé raději vycestovali?"
+    choices:
+      - text: "Eiffelova věž"
+        correct: true
+      - text: "Koloseum"
+        correct: false
+      - text: "Velká čínská zeď"
+        correct: false
+      - text: "Machu Picchu"
+        correct: false
+
+  - id: 11
+    stem: "Jaká byla cílová destinace prvního společného vandru novomanželů?"
+    choices:
+      - text: "Krkonoše"
+        correct: true
+      - text: "Šumava"
+        correct: false
+      - text: "Jeseníky"
+        correct: false
+      - text: "Beskydy"
+        correct: false
+
+  - id: 12
+    stem: "Jaké je oblíbené společné jídlo/vaření novomanželů?"
+    choices:
+      - text: "Italská kuchyně"
+        correct: true
+      - text: "Asijská kuchyně"
+        correct: false
+      - text: "Grilování"
+        correct: false
+      - text: "Domácí pizza"
+        correct: false
+
+  - id: 13
+    stem: "Kde se nevěsta poprvé seznámila s rodiči ženicha?"
+    choices:
+      - text: "Na rodinné oslavě"
+        correct: true
+      - text: "Na dovolené"
+        correct: false
+      - text: "U nich doma"
+        correct: false
+      - text: "V restauraci"
+        correct: false
+
+  - id: 14
+    stem: "Kolik lidí v ČR ode dneška nosí příjmení Mondschein?"
+    choices:
+      - text: "19"
+        correct: true
+      - text: "7"
+        correct: false
+      - text: "34"
+        correct: false
+      - text: "52"
+        correct: false
+
+  - id: 15
+    stem: "Jakou barvu oba novomanželé nesnáší?"
+    choices:
+      - text: "Růžová"
+        correct: true
+      - text: "Oranžová"
+        correct: false
+      - text: "Hnědá"
+        correct: false
+      - text: "Žlutá"
+        correct: false
