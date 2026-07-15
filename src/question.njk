@@ -82,10 +82,10 @@ eleventyExcludeFromCollections: true
 <body>
   <main>
     <div class="card">
-      <div class="label">Wedding Quiz</div>
+      <div class="label">Svatební kvíz - otázka {{ pagination.pageNumber + 1 }} z {{ pagination.pages.length }}</div>
       <h1 id="stem"></h1>
       <div class="choices" id="choices"></div>
-      <button class="submit" id="submit" disabled>Submit</button>
+      <button class="submit" id="submit" disabled>Je to tak?</button>
       <div class="feedback" id="feedback" hidden></div>
     </div>
   </main>
@@ -156,11 +156,15 @@ eleventyExcludeFromCollections: true
         fb.className = 'feedback correct';
         fb.textContent = 'Správně!';
       } else {
-        var rightTexts = Q.choices.filter(function (c) { return c.correct; }).map(function (c) { return c.text; });
         fb.className = 'feedback wrong';
-        fb.innerHTML = 'Bohužel ne. <span class="detail">Správná odpověď' +
-          (rightTexts.length > 1 ? 'i jsou: ' : ' je: ') +
-          rightTexts.join(', ') + '</span>';
+        fb.textContent = 'Bohužel ne. Zkus to znovu.';
+
+        selected = multiCorrect ? [] : null;
+        document.querySelectorAll('.choice').forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove('selected');
+        });
+        document.getElementById('submit').disabled = true;
       }
     });
   </script>
