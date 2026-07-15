@@ -4,3 +4,4 @@ dist/
 .claude/
 package-lock.json
 .idea
+qr-codes/

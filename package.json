@@ -6,10 +6,12 @@
   "scripts": {
     "build": "eleventy",
     "dev": "eleventy --serve",
-    "qr-urls": "node scripts/qr-urls.js"
+    "qr-urls": "node scripts/qr-urls.js",
+    "qr-sheet": "node scripts/generate-qr-sheet.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "qrcode": "^1.5.4"
   }
 }
