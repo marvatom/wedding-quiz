@@ -12,179 +12,151 @@ questions:
   - id: 1
     stem: "Čím chtěli být ženich a nevěsta, když byli malí?"
     choices:
-      - text: "Hasič a princezna"
+      - text: "Hasičem a učitelkou"
         correct: true
-      - text: "Kosmonaut a veterinářka"
+      - text: "Popelářem a právničkou"
         correct: false
-      - text: "Fotbalista a učitelka"
-        correct: false
-      - text: "Popová hvězda a lékařka"
+      - text: "Doktorem a doktorkou"
         correct: false
 
   - id: 2
     stem: "Jaký je společný zájem novomanželů?"
     choices:
-      - text: "Cestování"
+      - text: "Lukostřelba"
+        correct: false
+      - text: "Běh"
+        correct: false
+      - text: "Step"
         correct: true
-      - text: "Vaření"
-        correct: false
-      - text: "Turistika"
-        correct: false
-      - text: "Deskové hry"
-        correct: false
 
   - id: 3
     stem: "Kde se novomanželé poprvé setkali?"
     choices:
-      - text: "V kavárně"
+      - text: "V práci - na urgentním přijmu"
         correct: true
-      - text: "Na univerzitě"
+      - text: "Na vandru - byla to náhoda"
         correct: false
-      - text: "Přes společné přátele"
-        correct: false
-      - text: "Na dovolené"
+      - text: "v hospodě na kytarovém hraní"
         correct: false
 
   - id: 4
     stem: "Kam vedla úplně první společná dovolená novomanželů?"
     choices:
-      - text: "Itálie"
+      - text: "Nikam - byli doma"
+        correct: false
+      - text: "Vandr do přírody"
+        correct: false
+      - text: "Přechod Krkonoš"
         correct: true
-      - text: "Chorvatsko"
-        correct: false
-      - text: "Řecko"
-        correct: false
-      - text: "Španělsko"
-        correct: false
 
   - id: 5
     stem: "Který filmový žánr si novomanželé nejraději pustí před spaním?"
     choices:
-      - text: "Komedie"
+      - text: "Fantasy nebo sci-fi"
+        correct: false
+      - text: "Pohádky"
         correct: true
-      - text: "Thriller"
-        correct: false
       - text: "Romantický film"
-        correct: false
-      - text: "Dokument"
         correct: false
 
   - id: 6
     stem: "Kdo plakal víc při zásnubách?"
     choices:
       - text: "Ženich"
-        correct: true
+        correct: false
       - text: "Nevěsta"
         correct: false
       - text: "Oba stejně"
-        correct: false
-      - text: "Nikdo"
-        correct: false
+        correct: true
 
   - id: 7
     stem: "Jaké zvíře si novomanželé domů jistě pořídí?"
     choices:
+      - text: "Hada"
+        correct: false
       - text: "Psa"
+        correct: false
+      - text: "Křečka"
         correct: true
-      - text: "Kočku"
-        correct: false
-      - text: "Papouška"
-        correct: false
-      - text: "Žádné"
-        correct: false
 
   - id: 8
     stem: "Jak dlouho se novomanželé znají?"
     choices:
-      - text: "1 rok"
+      - text: "2 roky"
         correct: false
-      - text: "3 roky"
+      - text: "4 roky"
         correct: true
-      - text: "5 let"
-        correct: false
-      - text: "8 let"
+      - text: "6 let"
         correct: false
 
   - id: 9
     stem: "Jaké vozidlo řídila nevěsta, ale ženich nikdy?"
     choices:
-      - text: "Motorku"
-        correct: true
+      - text: "Motorka"
+        correct: false
       - text: "Traktor"
         correct: false
-      - text: "Autobus"
-        correct: false
-      - text: "Kamion"
-        correct: false
+      - text: "Motokára"
+        correct: true
 
   - id: 10
     stem: "Za kterou památkou by novomanželé raději vycestovali?"
     choices:
-      - text: "Eiffelova věž"
+      - text: "Hrad Carcassone (Francie)"
         correct: true
-      - text: "Koloseum"
+      - text: "Šikmá vež v Pise (Itálie)"
         correct: false
-      - text: "Velká čínská zeď"
-        correct: false
-      - text: "Machu Picchu"
+      - text: "Schönbrunský zámek (Rakusko)"
         correct: false
 
   - id: 11
     stem: "Jaká byla cílová destinace prvního společného vandru novomanželů?"
     choices:
-      - text: "Krkonoše"
+      - text: "Tomovo tábořiště (Údolí duchů)"
         correct: true
-      - text: "Šumava"
+      - text: "Sluneční zátoka (Hoši od bobří řeky)"
         correct: false
-      - text: "Jeseníky"
-        correct: false
-      - text: "Beskydy"
+      - text: "Zuzčino první tábořiště"
         correct: false
 
   - id: 12
     stem: "Jaké je oblíbené společné jídlo/vaření novomanželů?"
     choices:
-      - text: "Italská kuchyně"
-        correct: true
-      - text: "Asijská kuchyně"
-        correct: false
-      - text: "Grilování"
-        correct: false
       - text: "Domácí pizza"
+        correct: true
+      - text: "Sushi"
+        correct: false
+      - text: "Lívance"
         correct: false
 
   - id: 13
     stem: "Kde se nevěsta poprvé seznámila s rodiči ženicha?"
     choices:
-      - text: "Na rodinné oslavě"
+      - text: "Na společném výletě"
+        correct: false
+      - text: "po přespávačce"
         correct: true
-      - text: "Na dovolené"
-        correct: false
-      - text: "U nich doma"
-        correct: false
-      - text: "V restauraci"
+      - text: "Na vandru"
         correct: false
 
   - id: 14
-    stem: "Kolik lidí v ČR ode dneška nosí příjmení Mondschein?"
+    stem: "Kolik je žijících lidí s příjmením Mondschein (i s nevěstou)?"
     choices:
-      - text: "19"
-        correct: true
       - text: "7"
+        correct: false
+      - text: "19"
         correct: false
       - text: "34"
         correct: false
-      - text: "52"
-        correct: false
+      - text: "47"
+        correct: true
 
   - id: 15
     stem: "Jakou barvu oba novomanželé nesnáší?"
     choices:
-      - text: "Růžová"
+      - text: "Žlutou"
+        correct: false
+      - text: "Růžovou"
         correct: true
-      - text: "Oranžová"
-        correct: false
-      - text: "Hnědá"
-        correct: false
-      - text: "Žlutá"
+      - text: "Hnědou"
         correct: false
